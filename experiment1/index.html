@@ -2,11 +2,11 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment X - Futuristic Tech Support Generator</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
-	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<!-- Set viewport so page remains consistently scaled with narrow devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
@@ -17,45 +17,81 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
-	<!-- Load p5.js library -->
-	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
-
+	<!-- We don't need p5.js for this experiment, so it's been removed -->
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a JavaScript OOP Project -->
 	<script type="text/javascript" src="./js/project.js" DEFER></script>
-	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+	
+	<style>
+		/* Global Styles */
+		body {
+		  background: #f0f0f0;
+		  font-family: 'Courier New', Courier, monospace;
+		  margin: 0;
+		  padding: 0;
+		}
+		header, footer {
+		  text-align: center;
+		  padding: 1em;
+		  background: #333;
+		  color: #fff;
+		}
+		/* Updated Box Style */
+		#box {
+		  font-family: 'Courier New', Courier, monospace;
+		  border: 2px solid #333;
+		  padding: 1.5em;
+		  margin: 2em auto;
+		  width: 80%;
+		  background: #fff;
+		  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+		  border-radius: 8px;
+		}
+		/* Updated Button Style */
+		#clicker {
+		  display: block;
+		  margin: 1em auto;
+		  padding: 0.75em 1.5em;
+		  font-size: 1.1em;
+		  background: #007BFF;
+		  color: white;
+		  border: none;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  transition: background 0.3s ease;
+		}
+		#clicker:hover {
+		  background: #0056b3;
+		}
+	  </style>
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment X - Futuristic Tech Support Generator</h1>
 
+			<!-- Generator Section: replaces the canvas-container and fullscreen button -->
 			<div class="minor-section">
-				<div id="canvas-container">
-					<!-- canvas will be added here -->
-				</div>
-                <div class="fullscreen-box">
-                    <button id="fullscreen">Fullscreen</button>
-                </div>
+				<button id="clicker">Re-roll Ticket</button>
+				<div id="box"></div>
 			</div>
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>This experiment generates absurd tech support tickets from a dystopian future, where our gadgets have minds—and serious attitude. Every ticket is a quirky narrative featuring a frustrated user and a snarky support response.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>The generator uses JavaScript templates and randomized fillers to produce each unique ticket. jQuery is employed to update the DOM dynamically when you click "Re-roll Ticket".</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>This project blends dark humor with code, challenging us to think critically about our tech-centric world while having a blast debugging and refining our random ticket generator.</p>
 			</div>
 
 		</section>

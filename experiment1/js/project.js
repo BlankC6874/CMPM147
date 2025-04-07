@@ -1,34 +1,104 @@
-// project.js - purpose and description here
-// Author: Your Name
-// Date:
+const fillers = {
+  greeting: ["Yo", "Hey", "Sup", "Listen up"],
+  username: [
+    "CyberSavage99",
+    "404_Not_Found",
+    "DigitalNomad",
+    "GlitchWizard",
+    "ByteBandit",
+    "TechnoMancer",
+    "BugSlayer",
+    "CircuitBreaker",
+  ],
+  error: [
+    "my AI toaster just started tweeting my breakfast",
+    "the fridge is dishing out existential advice",
+    "the robot butler is on strike because of endless updates",
+    "my smart mirror keeps roasting my reflection",
+    "the coffee machine insists on ordering decaf",
+    "my home assistant is spiraling into nihilism",
+  ],
+  device: [
+    "AI toaster",
+    "sentient fridge",
+    "overworked robot butler",
+    "smart mirror",
+    "coffee machine",
+    "home assistant",
+  ],
+  issue: [
+    "glitching",
+    "melting down",
+    "acting up",
+    "rebelling",
+    "falling into an existential crisis",
+    "throwing tantrums",
+  ],
+  resolution: [
+    "tried turning it off and on again",
+    "ran a firmware update, but nothing changed",
+    "checked all connections, still no luck",
+    "consulted the manual to no avail",
+    "rebooted it repeatedly, but it's beyond help",
+    "dabbled in duct tape fixes, which obviously failed",
+  ],
+  support: [
+    "Tech Support",
+    "The Help Desk",
+    "Support Squad",
+    "IT Department",
+    "Digital Doctors",
+    "System Savants",
+  ],
+  closing: [
+    "Best regards",
+    "Yours in tech despair",
+    "In digital solidarity",
+    "With a heavy heart",
+  ],
+  inscription: [
+    "A fed-up user in a dystopian tech world",
+    "A disgruntled digital citizen",
+    "A tech-savvy rebel",
+    "An over-caffeinated programmer",
+    "A weary traveler in the land of tech chaos",
+  ],
+};
 
-// NOTE: This is how we might start a basic JavaaScript OOP project
+const template = `$greeting, $username!
 
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
+I'm in deep trouble: $error. My $device has been $issue non-stop. I've already $resolution, but the madness continues.
 
-// define a class
-class MyProjectClass {
-  // constructor function
-  constructor(param1, param2) {
-    // set properties using 'this' keyword
-    this.property1 = param1;
-    this.property2 = param2;
-  }
-  
-  // define a method
-  myMethod() {
-    // code to run when method is called
+$support, I need you to send a real fix ASAP.
+
+$closing,
+$inscription.
+`;
+
+// STUDENTS: You don't need to edit code below this line.
+
+const slotPattern = /\$(\w+)/;
+
+function replacer(match, name) {
+  let options = fillers[name];
+  if (options) {
+    return options[Math.floor(Math.random() * options.length)];
+  } else {
+    return `<UNKNOWN:${name}>`;
   }
 }
 
-function main() {
-  // create an instance of the class
-  let myInstance = new MyProjectClass("value1", "value2");
+function generate() {
+  let story = template;
+  while (story.match(slotPattern)) {
+    story = story.replace(slotPattern, replacer);
+  }
 
-  // call a method on the instance
-  myInstance.myMethod();
+  /* global box */
+  box.innerText = story;
 }
 
-// let's get this party started - uncomment me
-//main();
+/* global clicker */
+clicker.onclick = generate;
+
+generate();
