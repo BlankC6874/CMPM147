@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 2 - Generative Mountain Magic</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -32,7 +32,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 2 - Generative Mountain Magic</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -41,21 +41,41 @@
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
                 </div>
+				<div class="reimagine-btn">
+					<button id="reimagine">Reimagine</button>
+				</div>
 			</div>
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>This project offers a generative, living impression of this inspiring image:</p>
+				<div class="image-wrapper">
+					<img src="img/landscape.jpg">
+				</div>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>Relations to the inspiring image:</p>
+				<ul>
+					<li>Colors:</li>
+					<p>	- The color palette is a direct nod to the scene that inspired the project.</p>
+					<p>	- The sky’s clear blue, the deep green of the mountains, and the crisp snowy white of the peaks all recreate the natural harmony of alpine vistas.</p>
+					<li>Primitives:</li>
+					<p> - Basic geometric shapes form the backbone of the design. Ellipses represent the sun and wildflowers, capturing their simplicity and vibrancy.</p>
+					<li>Polygons:</li>
+					<p> - Custom-shaped polygons (like triangles), drawn using p5.js’s beginShape() and endShape() functions, are used to generate the mountain range.</p>
+					<li>Generativity:</li>
+					<p> - Each click of the “reimagine” button alters a random seed, producing a unique landscape every time.</p>
+					<p> - This randomness injects life and constant variation into the scene, mirroring how natural landscapes are ever-changing and never exactly the same from one moment to the next.</p>
+					<li>Life:</li>
+					<p> - The sun’s size adjusts responsively to the mouse’s horizontal movement, while wildflowers gently sway in sync with time.</p>
+					<p> - These dynamic behaviors transform the scene into a living, breathing piece of art that reacts to both environmental time and audience interaction.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>I started with a simple template, and by integrating generative techniques, interactive sun sizing, and dynamic wildflower movement, I transformed it into a piece that feels organic and true to an alpine landscape. No fluff—just a raw, algorithm-driven process that matches nature’s unpredictable beauty. However, there are certain things could be improved like the integration of tops and bodies among the hill/mountain can be more seamless.</p>
 			</div>
 
 		</section>

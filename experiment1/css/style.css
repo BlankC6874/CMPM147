@@ -1,19 +1,63 @@
-/* style.css */
+/* Integrated CSS */
 
-/* Set the canvas element to be the full size of the container */
-canvas {
-    width: 100%;
-    height: 100%;
-}
-
-/* Center the canvas element on the page */
+/* Global Styles */
 body {
+    background: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    
+    /* Flex settings from style.css to center content */
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#canvas-container {
+  }
+  
+  header, footer {
+    text-align: center;
+    padding: 1em;
+    background: #333;
+    color: #fff;
+  }
+  
+  /* Updated Box Style */
+  #box {
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid #333;
+    padding: 1.5em;
+    margin: 2em auto;
+    width: 80%;
+    background: #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  /* Updated Button Style */
+  #clicker {
+    display: block;
+    margin: 1em auto;
+    padding: 0.75em 1.5em;
+    font-size: 1.1em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #clicker:hover {
+    background: #0056b3;
+  }
+  
+  /* Style for the p5.js canvas and its container */
+  /* Set the canvas element to be the full size of its container */
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Define the canvas container dimensions */
+  #canvas-container {
     width: 100%;
     height: 600px;
-}
+  }
