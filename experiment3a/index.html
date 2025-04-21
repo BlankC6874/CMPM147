@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 3a - Alternate Worlds - Dungeon</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load p5.min.js library -->
+	<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"
+      integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ=="
+      crossorigin="anonymous"
+    ></script>
+
+	<!-- Experiment scripts -->
+	<script src="./js/project.js" defer></script>
+	<script src="./js/sketch.js" defer></script>
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 3a - Alternate Worlds - Dungeon</h1>
+
+			<div class="minor-section">
+				<div id="canvas-container">
+					<button id="reseedButton">reseed</button>
+					<span id="seedReport">seed 0</span>
+					<hr />
+					<div id="canvasContainer" style="display:inline-block; margin:10px;"></div>
+					<textarea id="asciiBox" cols="20" rows="20"
+					          style="opacity:0.5; letter-spacing:1ex; width:320px; margin:10px; font-family:monospace;">
+					</textarea>
+				</div>
+				<p>Use the mouse to hover over the floor tiles for a soft light effect.</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>This dungeon generator carves 3–5 non‑overlapping rectangular rooms out of a pitch‑black backdrop and links them with dedicated corridors. Walls are pure black, rooms use stone‑slab tiles, and corridors use distinct path tiles. Every room is guaranteed to be reachable via L‑shaped tunnels. Real‑time ASCII editing and reseed allow instant regeneration.</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>
+				  - Rooms (`.`) are drawn with tileset coords (2,3).<br>
+				  - Corridors (`+`) use tileset coords (1,3).<br>
+				  - Walls (`#`) are left as background black.<br>
+				  - Non‑overlap: each room is placed only if it doesn’t collide with existing rooms (with 1‑tile padding).<br>
+				  - Connectivity: after room placement, L‑shaped corridors link each room’s center to the previous one.<br>
+				  - Autotiling: `gridCheck` + `gridCode` encode neighbor presence into 0–15, then `drawContext` picks the correct edge/center tile via a lookup table.<br>
+				  - Animation: mouse hover on floor tiles triggers a soft light effect via `ellipse` and `map` over `mouseX/mouseY`.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>
+				  Building non‑overlapping, connected rooms taught me about collision detection and procedural layout.  
+				  Implementing autotiling clarified how simple bitflags can handle complex edge cases.  
+				  The main challenge was balancing randomness with guaranteed connectivity—using L‑shaped tunnels was a straightforward solution.  
+				  Overall, the experiment demonstrates a robust foundation for classic roguelike level generation.
+				</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<!-- Put link back to homepage here. -->
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+		</nav>
+	</main>
+</body>
+</html>
