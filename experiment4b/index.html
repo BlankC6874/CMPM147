@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 4b - Infinite Worlds - Futuristic</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load p5.min.js library -->
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" 
+		integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" 
+		crossorigin="anonymous"></script>
+
+	<!-- Experiment scripts -->
+	<script src="./js/engine.js" defer></script>
+	<script src="./js/my_world.js" defer></script>
+	<script src="./js/xxhash.min.js" defer></script>
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 4b - Infinite Worlds - Futuristic</h1>
+
+			<div class="minor-section">		
+				<div id="container"></div>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>Generating an infinite, interactive, and futuristic world that is filled with RGB neon lights and dancing Disco tiles. This world is inspired by modern skyscrapers with neon lights.</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>
+					This world hashes the user's key into a single worldSeed 
+					that seeds both noise and randomness to generate a reproducible, 
+					infinite isometric grid of 50x25 px diamonds; 
+					tiles whose row or column index is a multiple of a randomized blockSize become neon highways 
+					whose hue smoothly pulses around a base color via a sine of millis(),
+					while all other tiles are "buildings" shaded by 2D noise for subtle brightness variation 
+					and topped with antenna lights that blink according to a noise threshold. 
+					Clicking any building toggles a persistent yellow beacon at its center, 
+					and arrow-key panning lets you scroll endlessly through this futuristic scape, 
+					blending deterministic procedural structure with dynamic, interactive lighting.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>
+					Infinite Neon Grid explores a high-tech metropolis that never sleeps, 
+					where glowing highways carve neon veins across an endless isometric landscape. 
+					Drawing inspiration from sci-fi cityscapes, I constructed a grid of illuminated roadways and dark modern structures, 
+					then injected life through rhythmic pulse and interactive beacons. Each roadway glimmers in shifting hues, 
+					while building rooftops flicker with random antenna lights. 
+					Clicking a building toggles its beacon, inviting you to sculpt the city's skyline in real time.
+				</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<ul>
+				<li>
+					<a href="../index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+							   window.location.href = this.href;
+							 }">
+				   	Home
+				 	</a>
+				</li>
+				<li>
+					<a href="../experiment4a/index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+								window.location.href = this.href;
+							 }">
+					4a: Microsoft World
+					</a>
+				</li>
+				<li>
+					<a href="../experiment4c/index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+								window.location.href = this.href;
+							 }">
+					4c: Chaotic World
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</main>
+</body>
+</html>

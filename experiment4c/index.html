@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 4c - Infinite Worlds - Chaotic</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load p5.min.js library -->
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" 
+		integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" 
+		crossorigin="anonymous"></script>
+
+	<!-- Experiment scripts -->
+	<script src="./js/engine.js" defer></script>
+	<script src="./js/my_world.js" defer></script>
+	<script src="./js/xxhash.min.js" defer></script>
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 4c - Infinite Worlds - Chaotic</h1>
+
+			<div class="minor-section">		
+				<div id="container"></div>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>Generating an infinite, interactive, and chaotic world that is inspired from colored ribbons and filled with colored ribbons on tiles.</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>
+					This world uses p5.js and xxHash to hash the user's key into a single worldSeed, 
+					which combined with each tile's (i,j) coordinates - initializes 2-5 energy "filaments" per tile. 
+					Those filaments' angles and lengths continuously oscillate via sine functions with individual phase and amplitude parameters, 
+					and they're drawn in two complementary hues with randomized saturation and brightness. 
+					Hovering over a tile boosts its oscillation amplitude, 
+					while clicking it emits a 0.5 s expanding shockwave ring. 
+					All of this runs on an infinite isometric diamond grid (50x50 px) that you can pan endlessly with arrow keys, 
+					with off-screen tiles generated on the fly from their deterministic seeds to create a seamless yet beautiful chaos.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>
+					Infinite Chaos Grid is a dive into the raw pulse of digital entropy. 
+					I envisioned a world where each tile bursts with unpredictable energy lines 
+					that twist, flicker, and collide—an endless mosaic of controlled chaos. 
+					By remixing per‑tile random seeds with noise and sine oscillations, 
+					every little square becomes a unique dynamo: a living, electric cell in a vast, unbounded network. 
+					Hovering your cursor cranks up the agitation, 
+					while clicking releases a shockwave ripple that momentarily disturbs the surrounding mayhem. 
+					The result is a hypnotic tableau of frenetic motion—structured enough to feel cohesive, yet untamable in its details.
+				</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<ul>
+				<li>
+					<a href="../index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+							   window.location.href = this.href;
+							 }">
+				   	Home
+				 	</a>
+				</li>
+				<li>
+					<a href="../experiment4a/index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+							   window.location.href = this.href;
+							 }">
+				   	4a: Microsoft World
+				 	</a>
+				</li>
+				<li>
+					<a href="../experiment4b/index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+							   window.location.href = this.href;
+							 }">
+				   	4d: Futuristic World
+				 	</a>
+				</li>
+			</ul>
+		</nav>
+	</main>
+</body>
+</html>
