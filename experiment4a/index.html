@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment 3b - Alternate Worlds - Overworld</title>
+	<title>Experiment 4a - Infinite Worlds - MS</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -10,11 +10,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<!-- Load p5.min.js library -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" 
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" 
 		integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" 
 		crossorigin="anonymous"></script>
 
@@ -36,35 +37,50 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>This overworld generator paints coherent grass and water biomes using Perlin noise, then sparsely sprinkles trees. Half of the grass and water tiles animate in a gentle loop to simulate wind and ripples, while the others remain static for a natural, non‑uniform look. Drifting cloud shadows add extra atmosphere. Real‑time ASCII editing and reseed provide instant feedback.</p>
+				<p>Generating infinite interactive world that is full of Microsoft logos and black and white tiles.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
 				<p>
-				  - Grass (`.`) uses three frames at tileset coords (0,0), (1,0), (2,0) with selective animation.<br>
-				  - Water (`~`) uses three frames at coords (0,13), (1,13), (2,13) with Perlin‑driven variation.<br>
-				  - Trees (`T`) are chosen from tileset region ti=20…27, tj=3…7 and placed at random on grass.<br>
-				  - Autotiling: `gridCheck` + `gridCode` encode 4‑way neighbor presence into 0–15, `drawContext` selects edge vs. center via a lookup table.<br>
-				  - Animation: `(i+j)&1` divides tiles into static vs. animated groups; Perlin noise and `millis()` control frame selection and cloud shadow overlays.
+					The sketch generates an infinite isometric grid of 32x16 px diamonds seeded by a user-supplied key 
+					(hashed to worldSeed for reproducible noise and randomness).
+					Every 4x4 block's center 2x2 diamonds form a Microsoft-logo color motif (green, red, yellow, blue) 
+					while the rest display a black-and-white chessboard pattern. 
+					Each tile individually "floats" up to ±5 px in response to real-time mouse position, 
+					color blocks run a synced three-phase glow cycle (red → green+blue → yellow, 
+					each glowing for 100 ms with a 1s pause), and clicking any color block triggers a quick 0.5s 
+					white flash-using millis() for seamless infinite looping.
 				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
 				<p>
-				  Implementing selective animation taught me how to balance motion with stillness for a believable landscape.  
-				  Fine‑tuning Perlin thresholds and frame arrays eliminated jarring tiles and produced smooth transitions.  
-				  Finding the correct tree tile region required image sampling and experimentation.  
-				  Overall, this experiment demonstrates how simple procedural rules can yield rich, dynamic overworlds that feel alive.
+					I harness the iconic four-color Microsoft logo palette - not as a corporate badge,
+					but as building blocks in an infinite, rule-based playground.
+					Every 4x4 tile grid hides a perfect 2x2 logo motif: green, red, yellow, and blue diamonds stand tightly together, 
+					then dissolve into a classic black-and-white chessboard before the pattern repeats.
+					Each color block combined like a canvas gently floats, responding to your mouse movement,
+					while an orchestrated glow sequence (red → green+blue → yellow) dances through the grid in a rhythmic cycle.
 				</p>
 			</div>
 
 		</section>
 		<nav id="links" class="minor-section">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-            </ul>
+			<ul>
+				<li>
+					<a href="../index.html"
+					onclick="event.preventDefault();
+							 if (window.top !== window) {
+							   window.top.location.href = this.href;
+							 } else {
+							   window.location.href = this.href;
+							 }">
+				   	Home
+				 	</a>
+				</li>
+			</ul>
 		</nav>
 	</main>
 </body>

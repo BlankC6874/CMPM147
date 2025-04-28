@@ -82,7 +82,7 @@ function setup() {
     rebuildWorld(input.value());
   });
 
-  createP("Arrow keys scroll. Move around your mouse to manually control the flow. When cursor outside of the window, it flows automatically. Clicking on colors makes them glow.").parent("container");
+  createP("Arrow keys scroll. Move around your mouse to manually control the flow. Clicking on colored tiles makes them glow.").parent("container");
 
   rebuildWorld(input.value());
 }
