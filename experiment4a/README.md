@@ -1,17 +1,21 @@
-**Description**: 
-- This generator uses Perlin noise to carve out coherent grass and water biomes on a pitch‑black canvas, then sparsely populates the land with trees.
-- Half of the grass and water tiles animate in a subtle loop to simulate breezes and ripples, while the others remain pure static colors—resulting in a natural, non‑uniform appearance. 
+## Artist Statement
 
+I harness the iconic four-color Microsoft logo palette—not as a corporate badge,
+but as building blocks in an infinite, rule-based playground.
+Every 4×4 tile grid hides a perfect 2×2 logo motif: green, red, yellow, and blue diamonds stand tightly together, 
+then dissolve into a classic black-and-white chessboard before the pattern repeats.
+Each color block combined like a canvas gently floats, responding to your mouse movement,
+while an orchestrated glow sequence (red → green+blue → yellow) dances through the grid in a rhythmic cycle.
 
-**Codes**:
-- `.` — Grass tile (coordinates **0,0 / 1,0 / 2,0** in tileset)  
-- `~` — Water tile (coordinates **0,13 / 1,13 / 2,13**)  
-- `T` — Tree (tileset region **ti = 20…27**, **tj = 3…7**) 
+<sup>Thanks Microsoft for their beautiful logo (I guess).</sup>
 
-**Life**:
-- Perlin‑noise‑driven frames cycle on half the grass/water tiles (others stay static) for a gentle waving effect.  
-- Semi‑transparent white overlays move across grass/trees via noise + `millis()`.  
-- Each run scatters trees with varied sprites, so no two maps look the same.  
-- Tweak the ASCII map live—add/remove `.` / `~` / `T` and watch the canvas update at 60 FPS.
+## Technical Description
 
-(using tiles from [Micro Tileset - Overworld & Dungeon](https://thkaspar.itch.io/micro-tileset-overworld-dungeon) by [thkaspar](https://thkaspar.itch.io/))
+Built with p5.js and xxHash for deterministic worlds, 
+the sketch generates an infinite isometric grid of 32×16 px diamonds seeded by a user‐supplied key 
+(hashed to worldSeed for reproducible noise and randomness). 
+Every 4×4 block’s center 2×2 diamonds form a Microsoft‐logo color motif (green, red, yellow, blue) 
+while the rest display a black-and-white chessboard pattern. 
+Each tile individually “floats” up to ±5 px in response to real-time mouse position, 
+color blocks run a synced three-phase glow cycle (red → green+blue → yellow, each glowing for 100 ms with a 1 s pause), 
+and clicking any color block triggers a quick 0.5 s white flash—using millis() for seamless infinite looping.

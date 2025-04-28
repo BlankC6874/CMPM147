@@ -10,37 +10,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/site.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<!-- Load p5.min.js library -->
-	<script
-      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"
-      integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ=="
-      crossorigin="anonymous"
-    ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" 
+		integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" 
+		crossorigin="anonymous"></script>
 
 	<!-- Experiment scripts -->
-	<script src="./js/project.js" defer></script>
-	<script src="./js/sketch.js" defer></script>
+	<script src="./js/engine.js" defer></script>
+	<script src="./js/my_world.js" defer></script>
+	<script src="./js/xxhash.min.js" defer></script>
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment 3b - Alternate Worlds - Overworld</h1>
+			<h1>Experiment 4a - Infinite Worlds - MS</h1>
 
-			<div class="minor-section">
-				<div id="canvas-container">
-					<button id="reseedButton">reseed</button>
-					<span id="seedReport">seed 0</span>
-					<hr />
-					<div id="canvasContainer" style="display:inline-block; margin:10px;"></div>
-					<textarea id="asciiBox" cols="20" rows="20"
-					          style="opacity:0.5; letter-spacing:1ex; width:320px; margin:10px; font-family:monospace;">
-					</textarea>
-				</div>
+			<div class="minor-section">		
+				<div id="container"></div>
 			</div>
 
 			<div class="minor-section">
