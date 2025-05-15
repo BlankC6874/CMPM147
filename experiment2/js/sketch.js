@@ -62,77 +62,116 @@ function setup() {
 }
 
 // draw() function is called repeatedly, it's the main animation loop
+/* exported setup, draw */
 function draw() {
-  // ----- Generative Mountain Art Composition -----
-  
-  // Set the random seed so that each "reimagine" click produces a unique scene
   randomSeed(seed);
-  
-  // Draw sky background (inspired by alpine vistas)
-  background(135, 206, 235);
-  
-  // Draw the sun; its size reacts to the mouseX position to bring in a sense of life
-  noStroke();
-  let sunSize = map(mouseX, 0, width, 30, 70);
-  fill(255, 223, 0);
-  ellipse(width - 50, 50, sunSize, sunSize);
-  
-  // Draw mountains using a custom-shaped polygon
-  stroke(0, 100, 0);
-  fill(0, 100, 0); // Deep green for the mountain bodies
-  beginShape();
-  vertex(0, height * 0.6);
-  
-  // Generate mountain peaks with randomness
-  peakPoints = [];
-  let numPeaks = 10;
-  for (let i = 0; i <= numPeaks; i++) {
-    let x = map(i, 0, numPeaks, 0, width);
-    let y = height * 0.6 - random(20, 80); // Lower y means higher peaks
-    vertex(x, y);
-    peakPoints.push({ x: x, y: y });
-  }
-  
-  vertex(width, height * 0.6);
-  vertex(width, height);
-  vertex(0, height);
-  endShape(CLOSE);
-  
-  // Add snowcaps to the higher peaks (snow white)
-  noStroke();
-  fill(255);
-  peakPoints.forEach(pt => {
-    // Only add a snowcap if the peak is sufficiently high
-    if (pt.y < height * 0.6 - 30) {
-      let snowCapHeight = 15;
-      let snowCapWidth = 25;
-      // Lower the apex of the snowcap so that it blends better with the mountain
-      triangle(
-        pt.x, pt.y - snowCapHeight * 0.5,
-        pt.x - snowCapWidth / 2, pt.y,
-        pt.x + snowCapWidth / 2, pt.y
-      );
-    }
-  });
-  
-  // Draw wildflowers on the meadow using simple ellipses with a subtle sway effect
-  let numFlowers = 15;
-  for (let i = 0; i < numFlowers; i++) {
-    let x = random(0, width);
-    let y = random(height * 0.7, height * 0.9);
-    let flowerSize = random(5, 15);
-    let sway = sin(frameCount / 20 + i) * 5;
-    x += sway;
-    noStroke();
-    fill(255, 215, 0); // Bright yellow for petals
-    ellipse(x, y, flowerSize, flowerSize);
-    fill(200, 50, 50); // A contrasting color for the flower center
-    ellipse(x, y, flowerSize / 2, flowerSize / 2);
-  }
-  // ----- End of Generative Mountain Art Composition -----
+  background(135, 206, 235); // Sky blue
+
+  drawClouds();
+  drawMountains();
+  drawGround();
+  drawFlowers();
 }
 
-// mousePressed() function is called whenever a mouse button is pressed
-function mousePressed() {
-    // Add any mouse interaction logic here if needed
+function drawClouds() {
+  noStroke();
+  const numClouds = 7;
+  const baseY = height * 0.25;
+  const centerX = width / 2;
+
+  for (let i = 0; i < numClouds; i++) {
+    let t = map(i, 0, numClouds - 1, -1, 1); // 从 -1（最左）到 1（最右）
+    
+    // 水平位置：云朵从左至右分布
+    let cx = map(i, 0, numClouds - 1, 50, width - 50);
+    let cy = baseY + random(-10, 10); // 少许上下抖动
+
+    // 角度：以扇形为基础，每条云 ±10° 的扰动
+    let baseAngle = radians(t * 45); // -45° 到 +45°
+    let angle = baseAngle + radians(random(-10, 10));
+
+    // 随机宽度（厚度）和长度
+    let w = random(12, 30);   // 宽（视觉厚度）
+    let h = random(220, 300); // 长（纵向延展）
+
+    push();
+    translate(cx, cy);
+    rotate(angle);
+    fill(255, 255, 255, 180);
+    rect(-w / 2, -h / 2, w, h, 10);
+    pop();
+  }
+}
+
+function drawMountains() {
+  noStroke();
+  const baseY = height * 0.6;
+  const snowlineY = height * 0.48; // 调高雪线：越小越难触发白色
+  const numShapes = 35;
+
+  for (let i = 0; i < numShapes; i++) {
+    let shapeType = random() < 0.7 ? 'triangle' : 'trapezoid';
+    let baseX = random(-50, width + 50);
+    let baseWidth = random(40, 90);
+
+    let peakHeight = shapeType === 'triangle'
+      ? random(80, 150)
+      : random(40, 80);
+    let peakY = baseY - peakHeight;
+
+    if (shapeType === 'triangle') {
+      let isSnowCapped = (peakY <= snowlineY) && (peakHeight >= 120);
+      fill(isSnowCapped ? 255 : color(0, 100, 0));
+      let peakX = baseX + baseWidth / 2;
+      triangle(baseX, baseY, baseX + baseWidth, baseY, peakX, peakY);
+    } else {
+      fill(0, 100, 0);
+      let topWidth = baseWidth * random(0.4, 0.8);
+      let leftTop = baseX + (baseWidth - topWidth) / 2;
+      let rightTop = leftTop + topWidth;
+
+      beginShape();
+      vertex(baseX, baseY);
+      vertex(baseX + baseWidth, baseY);
+      vertex(rightTop, peakY);
+      vertex(leftTop, peakY);
+      endShape(CLOSE);
+    }
+  }
+}
+
+function drawGround() {
+  noStroke();
+  fill(85, 160, 85); // Balanced green for grass
+  rect(0, height * 0.6, width, height * 0.4);
+}
+
+function drawFlowers() {
+  let numFlowers = 60;
+  let xOffset = map(mouseX, 0, width, -30, 30);
+  for (let i = 0; i < numFlowers; i++) {
+    let x = random(-50, width + 50) + xOffset;
+    let y = random(height * 0.75, height * 0.95);
+    let stemHeight = random(20, 35);
+    let flowerSize = random(6, 12);
+
+    // Stem
+    stroke(34, 139, 34);
+    strokeWeight(2);
+    line(x, y, x, y - stemHeight);
+
+    // Leaves
+    noFill();
+    strokeWeight(1.5);
+    let leafY = y - random(5, 10);
+    line(x, leafY, x - 5, leafY - 5);
+    line(x, leafY, x + 5, leafY - 5);
+
+    // Flower head
+    noStroke();
+    fill(255, 215, 0);
+    ellipse(x, y - stemHeight, flowerSize, flowerSize);
+    fill(200, 50, 50);
+    ellipse(x, y - stemHeight, flowerSize / 2);
+  }
 }
